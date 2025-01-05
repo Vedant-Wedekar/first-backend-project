@@ -5,9 +5,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 const connectToDB = require('./config/db');
 connectToDB();
- 
+const cookiesparse = require('cookie-parser');
+app.use(cookiesparse());
 
-
+const indexrouter = require('./routes/index.route');
+app.use('/', indexrouter);
 // Middleware to parse URL-encoded data (form data)
 app.use(express.urlencoded({ extended: true }));
 
